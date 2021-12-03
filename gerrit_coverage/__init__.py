@@ -1,1 +1,1 @@
-from find_class.find_class import find_class
+# from gerrit_coverage.gerrit_coverage import gerrit_coverage

@@ -1,4 +1,5 @@
 from missing_diff_lines import missing_diff_lines
-from pprint import pprint
+from gerrit_coverage.condense import condense
 
-pprint(missing_diff_lines())
+lines = missing_diff_lines()
+condensed_lines = condense(lines)

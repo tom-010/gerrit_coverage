@@ -1,9 +1,5 @@
 from missing_diff_lines import missing_diff_lines
 from gerrit_coverage.condense import condense
-from gerrit_robo import Review
-
-from missing_diff_lines import missing_diff_lines
-from gerrit_coverage.condense import condense
 from gerrit_robo import Review, Gerrit
 import subprocess
 
@@ -17,23 +13,29 @@ class ReviewBot:
         self.gerrit = Gerrit(gerrit_url, gerrit_project).with_auth(username, http_credentials)
         
 
-    def review(self, path, change_id):
-        self._bring_repo_up_to_date(path, change_id)
-        review = self._do_review(path)
-        self._send_review(change_id, review)
+    def review(self, path='.', change_id=None):
+        if not change_id:
+            change_id = self.__parse_current_change_id(path)
+        print(change_id)
 
-    def _bring_repo_up_to_date(self, path, change_id):
-        output = self.__run(
-            f'git-review -d {change_id}',
-            cwd=path
-        )
-        return output
+        review = self._do_review(path)
+        print(review.comments)
+
+        
+        self._send_review(change_id, review)
 
     def _do_review(self, path):
         raise NotImplementedError
 
     def _send_review(self, change_id, review):
         self.gerrit.send_review(change_id, review)
+
+    def __parse_current_change_id(self, cwd):
+        last_commit_message = self.__run('git log -1 --pretty=%B', cwd='.')
+        for line in last_commit_message.split('\n'):
+            if line.startswith('Change-Id:'):
+                return line.replace('Change-Id:', '').strip()
+        
 
     def __run(self, command, cwd):
         return subprocess.check_output(command.split(), cwd=cwd).decode()

@@ -31,6 +31,7 @@ setup(
     long_description_content_type="text/markdown",
     python_requires='>=3',
     include_package_data=True,
-    entry_points={
-    }
+    entry_points = {
+        'console_scripts': ['gerrit_coverage = gerrit_coverage:main'] 
+    },
 )

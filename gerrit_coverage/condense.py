@@ -23,8 +23,4 @@ def condense(lines):
         for group in grouped:
             res.append((filename, group))
     
-
-    # res = []
-    # for filename, line in lines:
-    #     res.append((filename, (line, line)))
     return res

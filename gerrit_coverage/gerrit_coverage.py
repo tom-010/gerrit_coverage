@@ -16,12 +16,7 @@ class ReviewBot:
     def review(self, path='.', change_id=None):
         if not change_id:
             change_id = self.__parse_current_change_id(path)
-        print(change_id)
-
         review = self._do_review(path)
-        print(review.comments)
-
-        
         self._send_review(change_id, review)
 
     def _do_review(self, path):

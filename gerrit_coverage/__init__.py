@@ -17,4 +17,4 @@ def main():
         gerrit_domain, project, 
         args.username or os.environ.get('GERRIT_USER'), 
         args.password or os.environ.get('GERRIT_PASSWORD')) 
-    bot.review()
+    bot.review(change_id=os.environ.get('GERRIT_CHANGE_ID'))

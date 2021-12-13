@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 setup(
     name='gerrit_coverage',
     url='https://github.com/tom-010/gerrit_coverage',
-    version='0.0.4',
+    version='0.0.5',
     author='Thomas Deniffel',
     author_email='tdeniffel@gmail.com',
     packages=['gerrit_coverage'], # find_packages(),
@@ -32,6 +32,9 @@ setup(
     python_requires='>=3',
     include_package_data=True,
     entry_points = {
-        'console_scripts': ['gerrit_coverage = gerrit_coverage:main'] 
+        'console_scripts': [
+            'gerrit_check_style = gerrit_coverage:check_style',
+            'gerrit_coverage = gerrit_coverage:check_missing_lines',
+        ] 
     },
 )

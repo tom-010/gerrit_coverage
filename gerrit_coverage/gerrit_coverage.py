@@ -2,6 +2,7 @@ from missing_diff_lines import missing_diff_lines
 from gerrit_coverage.condense import condense
 from gerrit_robo import Review, Gerrit
 import subprocess
+from pprint import pprint
 
 class ReviewBot:
     
@@ -17,6 +18,14 @@ class ReviewBot:
         if not change_id:
             change_id = self.__parse_current_change_id(path)
         review = self._do_review(path)
+        if not review.comments:
+            print('Nothing found')
+            review.rating = 1
+            review.message = 'Checked coverage: Looks good to me'
+        else:
+            print('found')
+            pprint(review.comments)
+
         self._send_review(change_id, review)
 
     def _do_review(self, path):

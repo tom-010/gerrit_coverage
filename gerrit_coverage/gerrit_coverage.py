@@ -38,8 +38,8 @@ class ReviewBot:
 
 class CommentMissingLinesBot(ReviewBot):
 
-    def _do_review(self, path):
-        lines = missing_diff_lines(path)
+    def _do_review(self, path): # TODO: remove path arg
+        lines = missing_diff_lines()
         condensed_lines = condense(lines)
         review = self._condensed_lines_to_review(condensed_lines)
         return review

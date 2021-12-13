@@ -1,2 +1,2 @@
-missing-diff-lines
-gerrit-robo
+gerrit-robo==0.0.2
+missing-diff-lines==0.0.3

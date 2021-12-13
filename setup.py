@@ -9,14 +9,14 @@ README = (HERE / "README.md").read_text()
 setup(
     name='gerrit_coverage',
     url='https://github.com/tom-010/gerrit_coverage',
-    version='0.0.1',
+    version='0.0.3',
     author='Thomas Deniffel',
     author_email='tdeniffel@gmail.com',
     packages=['gerrit_coverage'], # find_packages(),
     license='Apache2',
     install_requires=[
-        'missing-diff-lines',
-        'gerrit-robo'
+        'gerrit-robo==0.0.2',
+        'missing-diff-lines==0.0.3'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
